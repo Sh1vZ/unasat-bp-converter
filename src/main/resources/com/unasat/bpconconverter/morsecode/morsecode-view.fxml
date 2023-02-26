@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+<VBox GridPane.columnIndex="0" alignment="CENTER" spacing="20.0">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <BorderPane>
+        <left>
+            <HBox>
+                <Label styleClass="label">Morse Code Converter</Label>
+            </HBox>
+        </left>
+        <right>
+            <HBox>
+                <Button text="Help" styleClass="flat-button">
+                    <graphic>
+                        <FontIcon iconLiteral="anto-question" iconSize="24" iconColor="#ff9800"/>
+                    </graphic>
+                </Button>
+            </HBox>
+        </right>
+    </BorderPane>
+
+    <Label styleClass="label">Input:</Label>
+    <TextArea styleClass="text-area"/>
+    <Label styleClass="label">Output:</Label>
+    <TextArea styleClass="text-area"/>
+    <FlowPane alignment="CENTER" hgap="10.0">
+        <Button text="Convert" styleClass="flat-button">
+            <graphic>
+                <FontIcon iconLiteral="anto-swap" iconSize="24" iconColor="#ff9800"/>
+            </graphic>
+        </Button>
+        <Button text="Play Audio" styleClass="flat-button">
+            <graphic>
+                <FontIcon iconLiteral="antf-play-circle" iconSize="24" iconColor="#ff9800"/>
+            </graphic>
+        </Button>
+        <Button text="Swap" styleClass="flat-button">
+            <graphic>
+                <FontIcon iconLiteral="anto-redo" iconSize="24" iconColor="#ff9800"/>
+            </graphic>
+        </Button>
+        <Button text="Clear" styleClass="flat-button">
+            <graphic>
+                <FontIcon iconLiteral="anto-clear" iconSize="24" iconColor="#ff9800"/>
+            </graphic>
+        </Button>
+    </FlowPane>
+</VBox>
