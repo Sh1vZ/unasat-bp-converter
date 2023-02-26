@@ -1,11 +1,13 @@
 package com.unasat.bpconconverter.controller;
 
+import com.unasat.bpconconverter.audioplayer.MorseCodePlayer;
 import com.unasat.bpconconverter.constant.Constants;
 import com.unasat.bpconconverter.constant.MorseCodeMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import javax.sound.sampled.LineUnavailableException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,7 +44,7 @@ public class MorsecodeConverter {
             clearErrorMsg();
             String input = getInputText();
             if (input.length() == 0) throw new Exception("Please fill in a value");
-            if (detectMorse(input)) {
+            if (isMorse(input)) {
                 convertMorseToWords(input);
             } else {
                 convertWordsToMorse(input);
@@ -53,14 +55,36 @@ public class MorsecodeConverter {
     }
 
     @FXML
-    protected void swapInputValues(){
-        String temp=getInputText();
+    protected void swapInputValues() {
+        String temp = getInputText();
         setInputText(getOutputText());
         setOutputText(temp);
         convertTextToMorse();
     }
 
-    private Boolean detectMorse(String input) {
+    private Thread audioThread = null;
+
+    @FXML
+    protected void playCode() {
+        if (MorseCodePlayer.isPlaying) {
+            MorseCodePlayer.stop();
+            audioThread.interrupt();
+            audioThread = null;
+            return;
+        }
+        audioThread = new Thread(() -> {
+            try {
+                String input = getInputText();
+                Boolean isMorse=isMorse(input);
+                MorseCodePlayer.play(isMorse ? getInputText() : getOutputText());
+            } catch (LineUnavailableException | InterruptedException e) {
+//                e.printStackTrace();
+            }
+        });
+        audioThread.start();
+    }
+
+    private Boolean isMorse(String input) {
         Pattern morsePattern = Pattern.compile(Constants.morseCodepattern);
         String formattedInput = input.replace("/", " ");
         Matcher matcher = morsePattern.matcher(formattedInput);
@@ -90,7 +114,7 @@ public class MorsecodeConverter {
     }
 
     private void convertMorseToWords(String morseSentence) {
-        String sentence=convertMorseToSentence(morseSentence);
+        String sentence = convertMorseToSentence(morseSentence);
         setOutputText(sentence);
     }
 

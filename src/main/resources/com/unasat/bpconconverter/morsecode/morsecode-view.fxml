@@ -4,7 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.ikonli.javafx.*?>
-<VBox GridPane.columnIndex="0" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.unasat.bpconconverter.controller.MorsecodeConverter">
+<VBox GridPane.columnIndex="0" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.unasat.bpconconverter.controller.MorsecodeConverter">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -26,18 +27,18 @@
     </BorderPane>
 
     <Label styleClass="label">Input:</Label>
-    <TextArea fx:id="inputText" wrapText="true"  styleClass="text-area"/>
+    <TextArea fx:id="inputText" wrapText="true" styleClass="text-area"/>
     <Label styleClass="label">Output:</Label>
-    <TextArea fx:id="outputText" wrapText="true" editable="false"  styleClass="text-area"/>
+    <TextArea fx:id="outputText" wrapText="true" editable="false" styleClass="text-area"/>
     <Label styleClass="label,error" fx:id="errorLabel"/>
 
-    <FlowPane alignment="CENTER" hgap="10.0">
+    <FlowPane alignment="CENTER" hgap="10.0" vgap="15.0">
         <Button text="Convert" styleClass="flat-button" onAction="#convertTextToMorse">
             <graphic>
                 <FontIcon iconLiteral="anto-swap" iconSize="24" iconColor="#ff9800"/>
             </graphic>
         </Button>
-        <Button text="Play Audio" styleClass="flat-button">
+        <Button text="Play/Stop Audio" styleClass="flat-button" onAction="#playCode">
             <graphic>
                 <FontIcon iconLiteral="antf-play-circle" iconSize="24" iconColor="#ff9800"/>
             </graphic>

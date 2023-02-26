@@ -5,6 +5,7 @@ module com.example.unasatbpconverter {
     requires org.controlsfx.controls;
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
 
     opens com.unasat.bpconconverter.main to javafx.fxml;
     opens com.unasat.bpconconverter.controller to javafx.fxml;
