@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.ikonli.javafx.*?>
-<VBox GridPane.columnIndex="0" alignment="CENTER" spacing="20.0">
+<VBox GridPane.columnIndex="0" alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml" fx:controller="com.unasat.bpconconverter.controller.MorsecodeConverter">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
@@ -26,11 +26,13 @@
     </BorderPane>
 
     <Label styleClass="label">Input:</Label>
-    <TextArea styleClass="text-area"/>
+    <TextArea fx:id="inputText" wrapText="true"  styleClass="text-area"/>
     <Label styleClass="label">Output:</Label>
-    <TextArea styleClass="text-area"/>
+    <TextArea fx:id="outputText" wrapText="true" editable="false"  styleClass="text-area"/>
+    <Label styleClass="label,error" fx:id="errorLabel"/>
+
     <FlowPane alignment="CENTER" hgap="10.0">
-        <Button text="Convert" styleClass="flat-button">
+        <Button text="Convert" styleClass="flat-button" onAction="#convertTextToMorse">
             <graphic>
                 <FontIcon iconLiteral="anto-swap" iconSize="24" iconColor="#ff9800"/>
             </graphic>
@@ -45,7 +47,7 @@
                 <FontIcon iconLiteral="anto-redo" iconSize="24" iconColor="#ff9800"/>
             </graphic>
         </Button>
-        <Button text="Clear" styleClass="flat-button">
+        <Button text="Clear" styleClass="flat-button" onAction="#clearFields">
             <graphic>
                 <FontIcon iconLiteral="anto-clear" iconSize="24" iconColor="#ff9800"/>
             </graphic>

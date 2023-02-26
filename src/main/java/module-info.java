@@ -7,5 +7,7 @@ module com.example.unasatbpconverter {
     requires org.kordamp.bootstrapfx.core;
 
     opens com.unasat.bpconconverter.main to javafx.fxml;
+    opens com.unasat.bpconconverter.controller to javafx.fxml;
     exports com.unasat.bpconconverter.main;
+    exports com.unasat.bpconconverter.controller;
 }

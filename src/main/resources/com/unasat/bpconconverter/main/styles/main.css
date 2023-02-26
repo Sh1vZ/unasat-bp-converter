@@ -6,6 +6,9 @@
     -fx-text-fill: #fff;
     -fx-control-inner-background: #212121;
     -fx-border-style: none;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-letter-spacing: 1pt;
 }
 
 
@@ -23,9 +26,13 @@
     -fx-text-fill: #ffffff;
     -fx-padding: 0.6em 1.2em;
     -fx-font-size: 1.2em;
+    -fx-transition: all 5s;
 }
 .flat-button:hover{
     -fx-background-color: #424242;
     -fx-cursor: hand;
+}
 
+.error{
+    -fx-text-fill: red;
 }

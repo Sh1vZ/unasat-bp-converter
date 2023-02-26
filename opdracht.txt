@@ -25,6 +25,7 @@ Inleveren:
  - presentatie
  - elk groepslid moet inleveren via email met als subject "JAVA 2 BP 2023"
  - uiterlijke inleverdatum: 19 maart 2023
+
  */
 
 public interface Requirements {
