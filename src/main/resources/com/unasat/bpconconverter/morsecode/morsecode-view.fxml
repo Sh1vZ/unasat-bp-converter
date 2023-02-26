@@ -27,7 +27,7 @@
     </BorderPane>
 
     <Label styleClass="label">Input:</Label>
-    <TextArea fx:id="inputText" wrapText="true" styleClass="text-area"/>
+    <TextArea fx:id="inputText" wrapText="true" styleClass="text-area" onKeyPressed="#convertTextToMorse"/>
     <Label styleClass="label">Output:</Label>
     <TextArea fx:id="outputText" wrapText="true" editable="false" styleClass="text-area"/>
     <Label styleClass="label,error" fx:id="errorLabel"/>

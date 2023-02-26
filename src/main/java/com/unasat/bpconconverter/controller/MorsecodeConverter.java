@@ -50,6 +50,7 @@ public class MorsecodeConverter {
                 convertWordsToMorse(input);
             }
         } catch (Exception e) {
+            setOutputText("");
             showErrorMsg(e.getMessage());
         }
     }
@@ -75,7 +76,7 @@ public class MorsecodeConverter {
         audioThread = new Thread(() -> {
             try {
                 String input = getInputText();
-                Boolean isMorse=isMorse(input);
+                Boolean isMorse = isMorse(input);
                 MorseCodePlayer.play(isMorse ? getInputText() : getOutputText());
             } catch (LineUnavailableException | InterruptedException e) {
 //                e.printStackTrace();
