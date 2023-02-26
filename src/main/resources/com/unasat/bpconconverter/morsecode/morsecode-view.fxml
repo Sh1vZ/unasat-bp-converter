@@ -42,7 +42,7 @@
                 <FontIcon iconLiteral="antf-play-circle" iconSize="24" iconColor="#ff9800"/>
             </graphic>
         </Button>
-        <Button text="Swap" styleClass="flat-button">
+        <Button text="Swap" styleClass="flat-button" onAction="#swapInputValues">
             <graphic>
                 <FontIcon iconLiteral="anto-redo" iconSize="24" iconColor="#ff9800"/>
             </graphic>

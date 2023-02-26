@@ -1,18 +1,14 @@
 package com.unasat.bpconconverter.controller;
 
+import com.unasat.bpconconverter.constant.Constants;
 import com.unasat.bpconconverter.constant.MorseCodeMap;
-import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MorsecodeConverter {
     @FXML
@@ -46,10 +42,38 @@ public class MorsecodeConverter {
             clearErrorMsg();
             String input = getInputText();
             if (input.length() == 0) throw new Exception("Please fill in a value");
-            convertWordsToMorse(input);
+            if (detectMorse(input)) {
+                convertMorseToWords(input);
+            } else {
+                convertWordsToMorse(input);
+            }
         } catch (Exception e) {
             showErrorMsg(e.getMessage());
         }
+    }
+
+    @FXML
+    protected void swapInputValues(){
+        String temp=getInputText();
+        setInputText(getOutputText());
+        setOutputText(temp);
+        convertTextToMorse();
+    }
+
+    private Boolean detectMorse(String input) {
+        Pattern morsePattern = Pattern.compile(Constants.morseCodepattern);
+        String formattedInput = input.replace("/", " ");
+        Matcher matcher = morsePattern.matcher(formattedInput);
+        return matcher.find();
+    }
+
+    private String convertMorseToSentence(String morseSentence) {
+        String[] morseLetters = morseSentence.split(" ");
+        ArrayList<String> morseOutput = new ArrayList<>();
+        for (String morseLetter : morseLetters) {
+            morseOutput.add(morse2abc(morseLetter).toString());
+        }
+        return String.join("", morseOutput);
     }
 
     private String convertSentenceToMorse(String sentence) {
@@ -63,6 +87,28 @@ public class MorsecodeConverter {
     private void convertWordsToMorse(String words) {
         String morse = convertSentenceToMorse(words);
         setOutputText(morse);
+    }
+
+    private void convertMorseToWords(String morseSentence) {
+        String sentence=convertMorseToSentence(morseSentence);
+        setOutputText(sentence);
+    }
+
+    private Character morse2abc(String morseletter) {
+        try {
+            HashMap<Character, String> morseMap = MorseCodeMap.morseCodeMap;
+            Character key = null;
+            for (Map.Entry<Character, String> entry : morseMap.entrySet()) {
+                if (entry.getValue().equals(morseletter)) {
+                    key = entry.getKey();
+                }
+            }
+            if (key == null) throw new Exception("Could not convert " + morseletter);
+            return key;
+        } catch (Exception e) {
+            showErrorMsg(e.getMessage());
+            return '#';
+        }
     }
 
     private String abc2morse(char letter) {
