@@ -65,7 +65,7 @@ public class MorsecodeConverter {
     private Thread audioThread = null;
 
     @FXML
-    protected void playCode() {
+    protected void playMorseAudio() {
         if (MorseCodePlayer.isPlaying) {
             MorseCodePlayer.stop();
             audioThread.interrupt();

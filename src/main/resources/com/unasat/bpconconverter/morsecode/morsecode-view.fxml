@@ -38,7 +38,7 @@
                 <FontIcon iconLiteral="anto-swap" iconSize="24" iconColor="#ff9800"/>
             </graphic>
         </Button>
-        <Button text="Play/Stop Audio" styleClass="flat-button" onAction="#playCode">
+        <Button text="Play/Stop Audio" styleClass="flat-button" onAction="#playMorseAudio">
             <graphic>
                 <FontIcon iconLiteral="antf-play-circle" iconSize="24" iconColor="#ff9800"/>
             </graphic>
