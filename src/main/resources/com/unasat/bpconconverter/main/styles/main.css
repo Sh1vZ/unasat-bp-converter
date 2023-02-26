@@ -19,7 +19,7 @@
 }
 .flat-button {
     -fx-background-color: #212121;
-    -fx-background-radius: 0;
+    -fx-background-radius: 10;
     -fx-text-fill: #ffffff;
     -fx-padding: 0.6em 1.2em;
     -fx-font-size: 1.2em;
